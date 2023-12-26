@@ -72,6 +72,9 @@ export default function FormContact() {
             <TextInput
               style={[styles.input, { width: '48%', marginRight: '4%' }]}
               onChangeText={(text) => handleInputChange("firstName", text)}
+              // passwordRules={true}
+              secureTextEntry
+
             />
             <TextInput
               style={[styles.input, { width: '48%' }]}
