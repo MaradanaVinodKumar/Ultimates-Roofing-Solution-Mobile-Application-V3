@@ -15,12 +15,14 @@ export default function Header(props) {
         width: "60%",
         height: "100%",
         paddingLeft: 20,
-        paddingTop: 9
+        paddingTop: 9,
+
       }}>
         <Image
           style={{
-            width: "52%",
-            height: "80%",
+            width: "60%",
+            height: "90%",
+
           }}
           source={logo}
         />
@@ -32,17 +34,18 @@ export default function Header(props) {
           <View style={{
             width: "40%",
             height: "100%",
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
             <View style={{
-              width: "70%",
+              width: "90%",
               height: "100%",
               paddingLeft: '2%',
-              paddingVertical: '8%'
+              paddingVertical: '5%',
+              marginRight: '28%'
             }}>
-              <TouchableNativeFeedback onPress={() => nav.navigate("quote")} >
-                <View style={{ paddingVertical: 10, alignItems: 'center', backgroundColor: '#3D3B6D', borderRadius: 3 }}>
-                  <Text style={{ fontSize: 11, fontWeight: 600, letterSpacing: 0.22, color: '#F9F9F9' }}>
+              <TouchableNativeFeedback onPress={() => nav.navigate("AnimationPage")} >
+                <View style={{ paddingVertical: 13, alignItems: 'center', backgroundColor: '#B22335', }}>
+                  <Text style={{ fontSize: 13, fontWeight: 300, letterSpacing: 0.22, color: '#F9F9F9' }}>
                     Instant Roof Quote
                   </Text>
                 </View>
@@ -72,6 +75,8 @@ const styles = StyleSheet.create({
     display: "flex",
     height: 63,
     backgroundColor: "white",
+    borderBottomWidth: 1,
+    borderColor: '#b1b1b1',
     marginVertical: Platform.OS === "ios" ? 15 : 0,
     flexDirection: 'row'
   },

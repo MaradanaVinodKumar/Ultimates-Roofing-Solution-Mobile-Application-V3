@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   StatusBar,
+  ImageBackground,
 } from "react-native";
 
 import { Video } from "expo-av";
@@ -31,472 +32,251 @@ import SidePointNavigation from "../Components/SidePointNavigation";
 import TextCarousal from "../Components/TextCarousal";
 import _3D_Video from "../assets/final_video.mp4"
 import _3D_Video_28mb from "../assets/final_video(28mb).mp4"
+import HomeImageScrolling from "../Components/HomeImagesScrolling";
+import smBoxImg1 from "../assets/homeScreenImages/Trusted100.png";
+import smBoxImg2 from "../assets/homeScreenImages/Experience15Years.png";
+import smBoxImg3 from "../assets/homeScreenImages/CustemerSupport.png";
 // import TextCarousal from "../Components/TextCarousal";
-
-
-
+import { useFonts } from "expo-font"//npx expo install expo-font
+import paganini from '../assets/fonts/RubikDoodleShadow-Regular.ttf';
+import Hauora from '../assets/fonts/fonts/ttf/Hauora-Regular.ttf';
+import ButtonCarousel from "../Components/ButtonCarousel";
+// import AppLoading from 'expo-app-loading'
 // import { Platform } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
 
 export default function HomePage() {
   const navigation = useNavigation();
-
-  const sample = require("../assets/final.gif");
-  // const videoRef = useRef(null);
-  // const navigation = useNavigation();
-  // useEffect(() => {
-  //   const unsubscribe = navigation.addListener("beforeRemove", (e) => {
-  //     // Pause or stop the video when navigating away
-  //     if (videoRef.current) {
-  //       videoRef.current.pauseAsync(); // or use videoRef.current.stopAsync();
-  //     }
-  //   });
-
-  //   const playVideo = async () => {
-  //     if (videoRef.current) {
-  //       try {
-  //         if (Platform.OS === "ios") {
-  //           // On iOS, autoplay is not allowed, so play manually
-  //           await videoRef.current.playAsync();
-  //         } else {
-  //           // On Android, use shouldPlay prop for autoplay
-  //           // Ensure shouldPlay is true for Android
-  //           videoRef.current.playAsync();
-  //         }
-  //       } catch (error) {
-  //         or("Error playing video:", error);
-  //       }
-  //     }
-  //   };
-
-  //   playVideo(); // Play the video when component mounts
-
-  //   return unsubscribe;
-  // }, [navigation]);
-  // const handlePlaybackStatusUpdate = (status) => {
-  //   if (status.didJustFinish) {
-  //     // Check if videoRef is available
-  //     if (videoRef.current) {
-  //       videoRef.current.replayAsync();
-  //     }
-  //   }
-  // };
+  let [fontsLoaded] = useFonts({
+    'paganini': paganini,
+    'Hauora': Hauora,
+  });
+  // if (!fontFamils) {
+  //   return <AppLoading />
+  // }
   return (
-
-    <SafeAreaView>
+    <>
       <Header button={true} />
-      {/* <SidePointNavigation /> */}
-      <StatusBar backgroundColor={'#B22335'} />
-      <ScrollView style={{ height: 'auto', }}>
-        <SafeAreaView>
-          <View>
-            {/* <Image source={sample} style={styles.backgroundVideoContainer} /> */}
-            <Video
-              style={styles.backgroundVideoContainer}
-              source={_3D_Video_28mb}
-              isMuted={true}
-              resizeMode="cover"
-              shouldPlay={true}
-              isLooping={true}
-              useNativeControls={false}
-            />
-            <View style={styles.overlay}>
-              <Text style={styles.overlayText}>
-                Elevate  {"\n"}Every Horizon{"\n"}With Our Roofing{"\n"}Expertise
-              </Text>
-
-              <Text style={styles.sub_text}>
-                A symphony of strength resonating{"\n"}through every project
-              </Text>
-
-              <TouchableOpacity
-                style={{
-                  backgroundColor: "#B22335",
-                  padding: 6,
-                  width: "50%",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: 10,
-                  marginRight: '29%',
-                  paddingVertical: '3%'
-                }}
-                onPress={() => navigation.navigate("FreeEstimate")}
-              >
-                <Text style={styles.buttonText}>GET A FREE ESTIMATE</Text>
+      <ScrollView style={styles.ScrollbodyBackground}>
+        {/*scrolling card*/}
+        <View style={styles.scrollingImagesBackground}>
+          {/*component for image scrolling */}
+          <HomeImageScrolling />
+          {/* Top heading*/}
+          <View style={styles.hoverHeadingBackground}>
+            <Text style={[styles.headerText, { fontFamily: "Hauora" }]}>
+              Elevate Your Roofing {"\n"}Experience with{"\n"}Ultimates Roofing App
+            </Text>
+            <View style={styles.GYFEButtonBackground}>
+              <TouchableOpacity style={styles.GYFEButton} onPress={() => { navigation.navigate('Contact') }} onpress={() => { navigation.navigate("") }}>
+                <View>
+                  <Text style={styles.GYFEButtonText}>Get Your Free Estimate</Text>
+                </View>
               </TouchableOpacity>
             </View>
           </View>
-        </SafeAreaView>
-        {/* <Cards1 /> */}
-
-        <View style={styles.ourServiceBackground}>
-          <Text style={{ fontSize: 30, fontWeight: "500", textAlign: "left" }}>
-            Our Services
-          </Text>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "left",
-              paddingVertical: "2%",
-
-            }}
-          >
-            <Text
-              style={{
-                color: "black",
-                fontWeight: "400",
-                fontSize: 15,
-                textAlign: "justify",
-              }}
-            >
-              From Home and Commercial Roofing to Siding, Gutters, and Windows, our services redefine precision and style. Elevate your property with our commitment to unparalleled craftsmanship.
+        </View>
+        <View style={{ paddingHorizontal: '5%', }}>
+          {/*Top heading descriptionText*/}
+          <View>
+            <Text style={[styles.descriptionText, { fontFamily: "Hauora" }]} >
+              At Ultimates Roofing LLC, we believe that every home and business deserves the highest quality roofing solutions. Established [Year], we have proudly served [Location] and surrounding areas, earning a reputation for excellence in the Roofing and Siding industry.
             </Text>
+          </View>
+          {/*three small boxes*/}
+          <View style={styles.smBoxBackground}>
+            <View style={styles.smBox}>
+              <ImageBackground source={smBoxImg1} resizeMode="cover"  >
+                <View style={styles.smBoxTextBAckground}>
+                  <Text style={styles.smBoxText}>100%</Text>
+                  <Text style={styles.smBoxText}>Trusted</Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.smBox}>
+              <ImageBackground source={smBoxImg2} resizeMode="cover"  >
+                <View style={styles.smBoxTextBAckground}>
+                  <Text style={styles.smBoxText}>15 Years </Text>
+                  <Text style={styles.smBoxText}>Experience</Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.smBox}>
+              <ImageBackground source={smBoxImg3} resizeMode="cover"  >
+                <View style={styles.smBoxTextBAckground}>
+                  <Text style={styles.smBoxText}>Customer</Text>
+                  <Text style={styles.smBoxText}>Support</Text>
+                </View>
+              </ImageBackground>
+            </View>
+          </View>
+          {/*Our Services*/}
+          <View>
+            {/*Our Services heading*/}
+            <View>
+              <Text style={[styles.headerText, { fontFamily: "Hauora", color: 'black', fontWeight: 600, fontSize: 20, marginTop: 16.5 }]}>
+                Our Services
+              </Text>
+            </View>
+            {/*Our Services descriptionText*/}
+            <View>
+              <Text style={[styles.descriptionText, { fontFamily: "Hauora" }]}>
+                From Home and Commercial Roofing to Siding, Gutters, and Windows, our services redefine precision and style. Elevate your property with our commitment to unparalleled craftsmanship.
+              </Text>
+            </View>
+          </View>
+          {/*Our Services navigations*/}
+          <View>
+            <TouchableOpacity style={styles.services} onPress={() => { navigation.navigate("Residential") }}>
+              <View style={{ width: "80%" }}>
+                <Text style={[styles.descriptionText, { fontWeight: '400', fontSize: 16, marginTop: 0 }]}>Residential Roofing</Text>
+              </View>
+              <View style={{ width: "20%", alignItems: 'flex-end', paddingRight: 10 }}>
+                <Icon name="arrow-forward" size={25} style={{ color: "#B22335", margin: 0 }} />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.services} onPress={() => { navigation.navigate("Commercial") }}>
+              <View style={{ width: "80%" }}>
+                <Text style={[styles.descriptionText, { fontWeight: '400', fontSize: 16, marginTop: 0 }]}>Commercial Roofing</Text>
+              </View>
+              <View style={{ width: "20%", alignItems: 'flex-end', paddingRight: 10 }}>
+                <Icon name="arrow-forward" size={25} style={{ color: "#B22335", margin: 0 }} />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.services} onPress={() => { navigation.navigate("Siding") }}>
+              <View style={{ width: "80%" }}>
+                <Text style={[styles.descriptionText, { fontWeight: '400', fontSize: 16, marginTop: 0 }]}>Siding Enhancements</Text>
+              </View>
+              <View style={{ width: "20%", alignItems: 'flex-end', paddingRight: 10 }}>
+                <Icon name="arrow-forward" size={25} style={{ color: "#B22335", margin: 0 }} />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.services} onPress={() => { navigation.navigate("Gutters") }}>
+              <View style={{ width: "80%" }}>
+                <Text style={[styles.descriptionText, { fontWeight: '400', fontSize: 16, marginTop: 0 }]}>Gutter Systems</Text>
+              </View>
+              <View style={{ width: "20%", alignItems: 'flex-end', paddingRight: 10 }}>
+                <Icon name="arrow-forward" size={25} style={{ color: "#B22335", margin: 0 }} />
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.services} onPress={() => { navigation.navigate("Windows") }}>
+              <View style={{ width: "80%" }}>
+                <Text style={[styles.descriptionText, { fontWeight: '400', fontSize: 16, marginTop: 0 }]}>Windows Services</Text>
+              </View>
+              <View style={{ width: "20%", alignItems: 'flex-end', paddingRight: 10 }}>
+                <Icon name="arrow-forward" size={25} style={{ color: "#B22335", margin: 0 }} />
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          {/*Button Scrolling Component */}
+          <View style={{ marginTop: 10 }}>
+            <ButtonCarousel />
+          </View>
+          <View>
+            <View><Text style={[styles.headerText, { fontFamily: "Hauora", color: 'black', fontWeight: 600, fontSize: 20, marginTop: 16.5 }]}>Reviews</Text></View>
+            <View><Text>Hear It From Our Clients</Text></View>
+            <View><Text>Discover why homeowners love Ultimates Roofing! Read brief testimonials highlighting our excellence in processes, materials, and meticulous cleanups.</Text></View>
           </View>
         </View>
-        <SafeAreaView>
-          {/*first card */}
-          <View style={styles.servicesCards}>
-            <View
-              // style={{
-              //   flex: 1,
-              //   justifyContent: "center", // Centers vertically
-              //   alignItems: "center", // Centers horizontally
-              // }}
-
-              style={styles.ourImageBackground}
-            >
-              <Image source={ourService1} style={styles.ourImage} />
-            </View>
-            <Text
-              style={styles.servicesCardsHeading}
-            >
-              Home Roofing
-            </Text>
-            <Text
-              style={styles.servicesCardsText}
-            >Enhance your home's protection with expert residential roofing solutions, blending durability and aesthetic appeal seamlessly.
-            </Text>
-
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate("Residential")}
-            >
-              <Text style={styles.buttonContainerText}>Learn More</Text>
-            </TouchableOpacity>
-
-          </View>
-          {/*second card */}
-          <View style={styles.servicesCards}>
-            <View
-              // style={{
-              //   flex: 1,
-              //   justifyContent: "center", // Centers vertically
-              //   alignItems: "center", // Centers horizontally
-              // }}
-              style={styles.ourImageBackground}
-            >
-              <Image source={ourService2} style={styles.ourImage} />
-            </View>
-            <Text
-              style={styles.servicesCardsHeading}
-            >
-              Commercial Roofing
-            </Text>
-            <Text
-              style={styles.servicesCardsText}
-            >
-              Elevate your business infrastructure with our top-tier commercial roofing services, combining reliability and performance for lasting excellence.
-            </Text>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate("Commercial")}
-            >
-              <Text style={styles.buttonContainerText}>Learn More</Text>
-            </TouchableOpacity>
-          </View>
-          {/*3rd card */}
-          <View style={styles.servicesCards}>
-            <View
-              // style={{
-              //   flex: 1,
-              //   justifyContent: "center", // Centers vertically
-              //   alignItems: "center", // Centers horizontally
-              // }}
-              style={styles.ourImageBackground}
-            >
-              <Image source={ourService3} style={styles.ourImage} />
-            </View>
-            <Text
-              style={styles.servicesCardsHeading}
-            >
-              Siding Enhancements
-            </Text>
-            <Text
-              style={styles.servicesCardsText}
-            >
-              Transform your property's exterior with our premium siding options, offering a perfect fusion of style, durability, and low maintenance.
-            </Text>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate("Siding")}
-            >
-              <Text style={styles.buttonContainerText}>Learn More</Text>
-            </TouchableOpacity>
-          </View>
-          {/*4th card*/}
-          <View style={styles.servicesCards}>
-            <View
-              // style={{
-              //   // flex: 1,
-              //   // justifyContent: "center", // Centers vertically
-              //   // alignItems: "center", // Centers horizontally
-              // }}
-              style={styles.ourImageBackground}
-            >
-              <Image source={ourService4} style={styles.ourImage} />
-            </View>
-            <Text
-              style={styles.servicesCardsHeading}
-            >
-              Gutter Systems
-            </Text>
-            <Text
-              style={styles.servicesCardsText}
-            >Transform your property's exterior with our premium siding options, offering a perfect fusion of style, durability, and low maintenance.
-            </Text>
-
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate("Gutters")}
-            >
-              <Text style={styles.buttonContainerText}>Learn More</Text>
-            </TouchableOpacity>
-
-          </View>
-          {/*5th card */}
-          <View style={styles.servicesCards}>
-            <View
-              // style={{
-              //   // flex: 1,
-              //   // justifyContent: "center", // Centers vertically
-              //   // alignItems: "center", // Centers horizontally
-              // }}
-              style={styles.ourImageBackground}
-            >
-              <Image source={ourService5} style={styles.ourImage} />
-            </View>
-            <Text
-              style={styles.servicesCardsHeading}
-            >
-              Window Services
-            </Text>
-            <Text
-              style={styles.servicesCardsText}
-            >Immerse your spaces in natural light and energy efficiency with our high-quality windows, designed for both beauty and functional brilliance.
-            </Text>
-
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate("Windows")}
-            >
-              <Text style={styles.buttonContainerText}>Learn More</Text>
-            </TouchableOpacity>
-
-          </View>
-        </SafeAreaView>
-        {/* <TouchableOpacity
-          style={{
-            backgroundColor: "#B22335",
-            width: "55%",
-            padding: 6,
-            alignItems: "center",
-            marginHorizontal: "23%",
-            marginTop: 40,
-          }}
-        >
-          <Text
-            style={styles.buttonText}
-            onPress={() => {
-              navigation.navigate("Services");
-            }}
-          >
-            VIEW ALL SERVICES
-          </Text>
-        </TouchableOpacity> */}
-        <Welcome />
-
-        <PromiseText />
-        <Cards2 />
-        {/* <MyCarousel /> */}
-        {/* <TextCarousal /> */}
-        <Agreements />
-        <Footer />
       </ScrollView>
-    </SafeAreaView>
+    </>
+
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundVideoContainer: {
-    flex: 1,
-    height: Platform.OS === "ios" ? 480 : 450,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "transparent",
-    resizeMode: "stretch",
+  ScrollbodyBackground: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'white'
+
+  },
+  hoverHeadingBackground: {
+    position: 'absolute',
     width: "100%",
-  },
-  // view: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   flex: 1,
-  //   height: 200,
-  //   backgroundColor: "#B22335",
-  // },
-  // view_white: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   flex: 1,
-  //   height: 200,
-  //   backgroundColor: "white",
-  // },
-  // view_mission_black: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   flex: 1,
-  //   height: 200,
-  //   backgroundColor: "black",
-  //   borderColor: "#B22335",
-  //   borderWidth: 3,
-  // },
-  // view_black: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   flex: 1,
-  //   height: 200,
-  //   backgroundColor: "black",
-  //   borderColor: "#B22335",
-  //   borderWidth: 3,
-  // },
-  // image: {
-  //   width: 50, // set the width of the image as needed
-  //   height: 50, // set the height of the image as needed
-  //   resizeMode: "cover", // or 'contain' based on your preference
-  //   marginRight: 10, // add margin for spacing between image and text
-  // },
-  backText: {
-    color: "white",
-    fontSize: 15,
-    width: "80%",
-    textAlign: "center",
-  },
-  backText_black: {
-    color: "black",
-    fontSize: 15,
-    width: "80%",
-    textAlign: "center",
-  },
-  ourImageBackground: {
-    alignContent: 'center',
-    width: "100%",
-  },
-  ourImage: {
-    width: "100%",
-    // height: 26,
-    height: '26%',
-    paddingVertical: "26%",
-  },
-  buttonContainer: {
-    width: '25%',
-    alignItems: "center",
-    justifyContent: "center",
-    marginHorizontal: "6%",
-    marginBottom: '20%',
-  },
-  buttonContainerText: {
-    color: "#B22335",
-    fontSize: 15
-  },
-  buttonText: {
-    color: "#F9F9F9",
-    fontSize: 16,
-    fontWeight: "400",
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  headerContainer: {
-    padding: 16,
-    backgroundColor: "transparent",
-    position: "absolute", // Set the desired background color
+    height: '100%',
+    paddingHorizontal: '5%',
+    backgroundColor: '#00000033',
+    justifyContent: 'center'
+
   },
   headerText: {
-    fontSize: 20,
-    color: "black",
-    fontWeight: "bold",
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(30, 30, 42, 0.57)", // Set the desired transparency here
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  overlayText: {
-    fontSize: 35,
-    textAlign: "justify",
-    fontWeight: "bold",
-    color: "white",
-    width: "84%",
-  },
-  sub_text: {
-    fontSize: 20,
-    color: "white",
-    width: "79%",
-    textAlign: "justify",
-  },
 
-  servicesCards: {
-    marginVertical: '3%',
-    marginHorizontal: '5%',
-    borderRadius: 10,
-    overflow: "hidden",
-    backgroundColor: '#ffffff',
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    height: 350,
-    // height: '6.6%',
+    fontSize: 25,
+    fontWeight: '500',
+    lineHeight: 30,
+    letterSpacing: 0.4,
+    color: '#ffffff',
+    width: '100%'
   },
-  servicesCardsHeading: {
-    fontWeight: "500", fontSize: 22, paddingHorizontal: "6%", marginVertical: 10
+  GYFEButtonBackground: {
+
   },
-  servicesCardsText: {
-    textAlign: "justify",
-    width: "100%",
+  GYFEButton: {
+
+    width: 185,
+    paddingHorizontal: '3%',
+    paddingVertical: '4%',
+    backgroundColor: 'white'
+  },
+  GYFEButtonText: {
+    color: '#B22335',
     fontSize: 15,
-    paddingHorizontal: "7%",
-    marginBottom: '3%',
     fontWeight: '400',
-    color: '#323539'
+    letterSpacing: 0.24,
   },
-  ourServiceBackground: {
-
-    marginHorizontal: '6%',
-    marginVertical: '8%'
+  descriptionText: {
+    fontSize: 15,
+    fontWeight: '300',
+    lineHeight: 21,
+    letterSpacing: 0.28,
+    color: '#323539',
+    width: '100%',
+    marginTop: '5%'
 
   },
-  // rotateText: {
-  //   transform: [{ rotate: '0deg' }], // Adjust the angle as needed
-  //   fontSize: 10,
-  //    textAlignVertical: 'center',
-  //   fontWeight: '500',
-  // },
+  scrollingImagesBackground: {
+    width: '100%',
+    height: 350,
+    backgroundColor: '#b9b8b8',
+  },
+  smBoxBackground: {
+    width: '100%',
+    marginVertical: '9%',
+    flexDirection: 'row',
+    height: 120,
+    justifyContent: 'space-between'
+  },
+  smBox: {
+    width: '30%',
+    height: '100%',
+    borderRadius: 5,
+    overflow: 'hidden',
+    backgroundColor: '#000000',
+
+
+  },
+  smBoxText: {
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 21,
+    letterSpacing: 0.28,
+    color: '#ffffff',
+
+  },
+  smBoxTextBAckground: {
+    paddingVertical: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  services: {
+    width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 6,
+    borderBottomWidth: 0.5,
+    marginTop: 10
+  }
 });

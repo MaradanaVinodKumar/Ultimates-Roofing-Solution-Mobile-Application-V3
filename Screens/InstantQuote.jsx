@@ -31,7 +31,6 @@ const handleSearchLocation = (setLoading, setMarkerCoordinates, textInputValue) 
     )
     .then((response) => {
       const firstResult = response.data.results[0];
-
       if (firstResult) {
         setMarkerCoordinates({
           latitude: firstResult.geometry.lat,
@@ -64,9 +63,6 @@ const Map = (props) => {
 }
 
 export default function InstantQuote() {
-
-
-
   const [mapRegion, setMapRegion] = useState(defaultRegion);
   const [textInputValue, setTextInputValue] = useState("");
   const [markerCoordinates, setMarkerCoordinates] = useState({
