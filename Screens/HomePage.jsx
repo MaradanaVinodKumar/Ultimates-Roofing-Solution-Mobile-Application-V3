@@ -39,8 +39,10 @@ import smBoxImg3 from "../assets/homeScreenImages/CustemerSupport.png";
 // import TextCarousal from "../Components/TextCarousal";
 import { useFonts } from "expo-font"//npx expo install expo-font
 import paganini from '../assets/fonts/RubikDoodleShadow-Regular.ttf';
-import Hauora from '../assets/fonts/fonts/ttf/Hauora-Regular.ttf';
+import Hauora from '../assets/fonts/fonts/ttf/Hauora-Medium.ttf';
 import ButtonCarousel from "../Components/ButtonCarousel";
+import Reviews from "../Components/Reviews";
+import Trust from "../Components/Trust";
 // import AppLoading from 'expo-app-loading'
 // import { Platform } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
@@ -179,6 +181,8 @@ export default function HomePage() {
             <View><Text>Discover why homeowners love Ultimates Roofing! Read brief testimonials highlighting our excellence in processes, materials, and meticulous cleanups.</Text></View>
           </View>
         </View>
+        <Reviews />
+        <Trust />
       </ScrollView>
     </>
 

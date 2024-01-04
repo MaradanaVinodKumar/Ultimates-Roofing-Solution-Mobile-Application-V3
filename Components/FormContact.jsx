@@ -1,8 +1,25 @@
 import React, { useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
+import { Alert, ScrollView, TouchableOpacity } from "react-native";
 import { View, Text, TextInput, Button, StyleSheet, Image } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import Icon from "@expo/vector-icons/Ionicons";
+import ImageUploadIcon from "../assets/ImageUploadIcon.png";
+// import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+// import RNFetchBlob from 'react-native-fetch-blob';
+import * as ImagePicker from 'expo-image-picker';
+
+const options = {
+  title: 'Select Image',
+  type: 'library',
+  options: {
+    maxHeight: 200,
+    maxWidth: 200,
+    selectionLimit: 1,
+    mediaType: 'photo',
+    includeBase64: false,
+  },
+}
+
 
 export default function FormContact() {
   const data = [
@@ -13,6 +30,7 @@ export default function FormContact() {
     { label: "Windows", value: "Windows" },
     { label: "Others", value: "Others" },
   ];
+  const [selectedImages, setSelectedImages] = useState(0);
   const [value, setValue] = useState(null);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -37,6 +55,21 @@ export default function FormContact() {
     // You can send the form data to your server or perform any other actions
   };
 
+  const selectImages = async () => {
+    try {
+      const images = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsMultipleSelection: true
+      });
+      num_images = images.assets.length
+      setSelectedImages(num_images);
+    }
+    catch (e) {
+      // console.log(e);
+      setSelectedImages(0);
+    }
+
+  };
   return (
     <ScrollView >
 
@@ -153,14 +186,29 @@ export default function FormContact() {
           placeholder="Please share detailed information about your project to help us understand better."
 
         />
+        <View style={{ width: "100%" }}>
+          <View>
+            <TouchableOpacity style={{}} onPress={selectImages}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ alignContent: 'center' }}>
+                  <Image style={{ width: 27, height: 27 }} source={ImageUploadIcon} />
+                </View>
+                <View style={{ alignContent: 'center' }}>
+                  <Text style={{ marginLeft: 10, fontSize: 14, fontWeight: 400, }}>Attach Photos</Text>
+                  <Text style={{ marginLeft: 10 }}>{selectedImages <= 4 && selectedImages != 0 ? <Text style={{ color: 'green', fontWeight: '400', }}>( {selectedImages} photos selected)</Text> : <Text style={{ color: "#B22335" }}><Icon name="md-alert-circle-outline" color={'#B22335'} size={13} /> {selectedImages == 0 ? "Please Select Photos" : "Please Select Lessthen 4 Photos, You Have Selected " + selectedImages + " Photos"}</Text>}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
         <View style={{ alignItems: 'center', }}>
           <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
-
             <Text style={{ color: '#F9F9F9', fontSize: 14, fontWeight: '400' }}>Submit</Text>
-
           </TouchableOpacity >
         </View>
       </View>
+
       <View style={{ marginBottom: 50 }}></View>
     </ScrollView>
   );
@@ -222,7 +270,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 13,
     alignItems: 'center',
-    // marginBottom: 50
+    // marginBottom: 50,
+    marginTop: 10
   },
   Contactbox: {
     width: "48%",
@@ -244,6 +293,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     letterSpacing: 0.28,
     color: '#323539'
-  }
+  },
+
 });
 

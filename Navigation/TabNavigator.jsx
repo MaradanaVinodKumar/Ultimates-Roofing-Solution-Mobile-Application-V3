@@ -27,10 +27,14 @@ import serviceIconActive from "../assets/servicesIconActive.png";
 import serviceIconInactive from "../assets/servicesIconInactive.png"
 import contactIconActive from "../assets/contactIconActive.png";
 import contactIconInactive from "../assets/contactIconInactive.png";
-import profileIconActive from "../assets/profileIconActive.png";
-import profileIconInactive from "../assets/profileIconInactive.png";
+import aboutActive from "../assets/aboutActive.png";
+import aboutInactive from "../assets/aboutInactive.png";
+import reviewActive from "../assets/reviewActive.png";
+import reviewInactive from "../assets/reviewInactive.png";
+
 import WebViewer from "../Screens/webView";
 import Animations from "../Screens/Animations";
+import ReviewPage from "../Screens/ReviewPage";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -230,11 +234,7 @@ const TabNavigator = () => {
                     name="About"
                     options={{
                         tabBarIcon: ({ focused }) => (
-                            <View style={{ alignItems: 'center', position: 'relative', top: -2 }}>
-                                <Icon name="md-rocket-outline" size={25} style={{ color: focused ? "#B22335" : "black", margin: 0 }} />
-                                <Text style={{ fontSize: 15, fontWeight: 500, color: focused ? 'black' : '#6e6e6e' }}>About</Text>
-                                <View style={{ borderTopWidth: 3, width: 25, borderColor: focused ? "#B22335" : "#ffffff" }} />
-                            </View>
+                            <BottomIcon iconName="About" iconImage={focused ? aboutActive : aboutInactive} focuse={focused} />
 
                         ),
                     }}
@@ -256,6 +256,32 @@ const TabNavigator = () => {
                                 name="quote"
                                 component={InstantQuote}
                                 options={{ headerShown: false }}
+                            />
+                        </Stack.Navigator>
+                    )}
+                </Tab.Screen>
+
+                <Tab.Screen
+                    name="Review"
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <BottomIcon iconName="Review" iconImage={focused ? reviewActive : reviewInactive} focuse={focused} />
+
+                        ),
+                    }}
+                >
+                    {() => (
+                        <Stack.Navigator>
+                            <Stack.Screen
+                                name="ReviewPage"
+                                component={ReviewPage}
+                                options={{
+                                    headerShown: false,
+                                    tabBarIcon: () => (
+                                        <Icon name="home-sharp" size={focused ? 35 : 25} color="black" />
+
+                                    ),
+                                }}
                             />
                         </Stack.Navigator>
                     )}
